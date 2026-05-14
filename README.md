@@ -22,3 +22,4 @@ I built this because I wanted to understand how real VFX studios manage their as
 4. Creates a properly structured USD file complete with the asset name the kind it is aswell as what version it is
 5. Automatically creates updated versions of the same asset and lists it
 
+> A standalone executable for non-technical users is planned for a future release.
