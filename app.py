@@ -26,6 +26,14 @@ class MainWindow(QMainWindow):
         layout.addWidget(QLabel("Asset Type"))
         layout.addWidget(self.combobox)
 
+        self.comboboxLOD = QComboBox()
+        self.comboboxLOD.addItems(["High", "Medium", "Low"])
+
+        layout.addWidget(QLabel("Asset LOD"))
+        layout.addWidget(self.comboboxLOD)
+
+
+
         self.Btn = QPushButton(text="Create Asset", parent=self)
         self.Btn.setFixedSize(100, 60)
         self.Btn.clicked.connect(self.create_asset)
@@ -38,7 +46,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(central_widget)
 
     def create_asset(self):
-        create_asset(self.textbox.text(), self.combobox.currentText())
+        create_asset(self.textbox.text(), self.combobox.currentText(), self.comboboxLOD.currentText())
 
 
 

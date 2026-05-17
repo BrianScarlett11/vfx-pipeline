@@ -4,7 +4,7 @@ import os
 from pxr import Sdf, Usd, UsdGeom
 
 #make a file directory of the asset
-def create_asset(asset_name, asset_type):
+def create_asset(asset_name, asset_type, asset_LOD):
     directory_name = "Assets"
     nested_directory = (f"{directory_name}/{asset_type}/{asset_name}")
 
@@ -52,6 +52,35 @@ def create_asset(asset_name, asset_type):
     prim = xform.GetPrim()
     prim.SetMetadata("kind", "component")
     prim.CreateAttribute("asset:version", Sdf.ValueTypeNames.String).Set(f"{final_version}")
+
+#create Level of Detail variants
+    variant_set = prim.GetVariantSets().AddVariantSet("LOD")
+
+    #create dictionary of LOD variants and its subdivisionlevel
+    lod_variants = {
+        "1_high": 4,
+        "2_medium": 2,
+        "3_low": 0
+    }
+
+    for key, value in lod_variants.items():
+        variant_set.AddVariant(key)
+        variant_set.SetVariantSelection(key)
+        with variant_set.GetVariantEditContext():
+            prim.CreateAttribute("lod:subdivisionLevel", Sdf.ValueTypeNames.Int).Set(value)
+
+#convert LOD selection into the formatted variants
+    if asset_LOD == "High":
+        LOD_key = "1_high"
+    elif asset_LOD == "Medium":
+        LOD_key = "2_medium"
+    else:
+        LOD_key = "3_low"
+        
+
+    variant_set.SetVariantSelection(f"{LOD_key}")
+    
+  
 
 #save it
     stage.GetRootLayer().Save()
