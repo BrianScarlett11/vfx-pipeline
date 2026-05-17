@@ -18,10 +18,12 @@ I built this because I wanted to understand how real VFX studios manage their as
 
 ## What It Currently Does
 1. Opens a GUI
-2. Only allows the user to select either a Character, Prop, or Environment as the asset type
-3. Creates a folder with subfolders based on the type and name of the asset
-4. Creates a properly structured USD file complete with the asset name the kind it is as well as what version it is
-5. Automatically updates the version number each time the same asset is created
+2. Allows user to input the name of an Asset
+3. Only allows the user to select either a Character, Prop, or Environment as the asset type
+4. Only allows the user to select either High, Medium, or Low as their asset Level of Detail
+5. Creates a folder with subfolders based on the type and name of the asset
+6. Creates a properly structured USD file complete with the asset name the kind it is as well as what version it is
+7. Automatically updates the version number each time the same asset is created
 
 > This project is still being worked on 
 > A standalone executable for non-technical users is planned for a future release.
