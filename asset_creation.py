@@ -5,8 +5,8 @@ from pxr import Sdf, Usd, UsdGeom
 
 #make a file directory of the asset
 def create_asset(asset_name, asset_type, asset_LOD):
-    directory_name = "Assets"
-    nested_directory = (f"{directory_name}/{asset_type}/{asset_name}")
+
+    nested_directory = os.path.join(os.path.dirname(__file__), "Assets", asset_type, asset_name)
 
     try:
         os.makedirs(nested_directory)
@@ -31,6 +31,7 @@ def create_asset(asset_name, asset_type, asset_LOD):
 
     else:
         for version_number in dir_list:
+            print(version_number)
             first_split = version_number.split(f'{asset_name}_v')
             second_split = first_split[1].split(".usda")
 
